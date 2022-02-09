@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        .container{
+    text-align: center;
+}
+table{
+    margin: auto;
+}
+
+input{
+    
+    text-align: right;
+    color: white;
+    background-color: rgb(51, 49, 49);
+    border-radius: 8px;
+   
+    height: 28px;
+    width: 170px;
+}
+button{
+    border-radius: 4px;
+    width: 44px;
+    height: 44px;
+}
+.b{
+    border-radius: 4px;
+    width: 44px;
+    height: 44px;
+    background-color: rgb(224, 195, 31);
+}
+.long{
+    width: 88px; ;
+}
+.calculator{
+    display: inline-block;
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Calculator</h1>
+        <div class="calculator">
+            <input type="text" id="input">
+            <table>
+                <tr>
+                    <td>
+                        <button class="btn">C</button><button class="btn">!</button><button
+                            class="btn">%</button><button class="btn b">/</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="btn">7</button><button class="btn"> 8</button><button
+                            class="btn">9</button><button class="btn b">X</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="btn">4</button><button class="btn">5</button><button
+                            class="btn">6</button><button class="btn b">-</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="btn">1</button><button class="btn">2</button><button
+                            class="btn">3</button><button class="btn b">+</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="btn long">0</button><button class="btn">.</button><button
+                            class="btn b">=</button>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</body>
+<script >
+    let input = document.getElementById('input');
+
+let button = document.querySelectorAll('.btn');
+for (let btn of button) {
+    btn.addEventListener('click', (e) => {
+
+        if (btn.innerHTML == 'X') {
+            input.value += "*";
+        }
+        else if (btn.innerHTML == 'C') {
+            input.value = "";
+        }
+        else if (btn.innerHTML == "=") {
+            let num = '';
+            for (c of input.value) {
+                if (c != "!") {
+                    num += c;
+                }
+                else {
+                    input.value = factorial(parseInt(num));
+                    break
+                }
+            }
+            input.value = eval(input.value)
+        }
+        else {
+            input.value += btn.innerHTML;
+        }
+    })
+}
+function factorial(num) {
+    if (num == 1 || num == 0) {
+        return 1;
+    }
+    else {
+        return (num * factorial(num - 1));
+    }
+}
+</script>
+</html>
